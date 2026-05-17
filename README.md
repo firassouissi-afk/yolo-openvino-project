@@ -1,49 +1,134 @@
-# 🚀 YOLO OpenVINO Real-Time Object Detection
+YOLOv8 OpenVINO Real-Time Object Detection (Intel GPU/CPU Optimized)
 
-![Python](https://img.shields.io/badge/python-3.11-blue)
-![OpenVINO](https://img.shields.io/badge/OpenVINO-Accelerated-orange)
-![YOLOv8](https://img.shields.io/badge/YOLO-v8-green)
-![Platform](https://img.shields.io/badge/Windows-Compatible-lightgrey)
-![License](https://img.shields.io/badge/license-MIT-yellow)
+============================================================
 
----
+OVERVIEW
+------------------------------------------------------------
+This project is a real-time object detection system using:
 
-## 📌 Overview
+- YOLOv8 (Ultralytics)
+- OpenVINO backend (Intel acceleration)
+- OpenCV video streaming
+- Multi-threaded inference pipeline
+- FPS + CPU performance overlay
 
-This project is a **real-time object detection system** using **YOLOv8n optimized with Intel OpenVINO**.
+It is optimized for Intel UHD Graphics (12th Gen) with CPU fallback.
 
-It is designed to run efficiently on **low-power hardware (Intel UHD Graphics / CPU)** while maintaining smooth real-time performance.
+============================================================
 
----
+FEATURES
+------------------------------------------------------------
+- Real-time object detection (YOLOv8n)
+- OpenVINO acceleration (CPU / Intel GPU auto)
+- FPS counter overlay
+- CPU usage monitoring
+- Multi-threaded inference (smooth video)
+- Webcam input (640x480 optimized)
+- Lightweight and fast
 
-## 🎯 Features
+============================================================
 
-- ⚡ OpenVINO accelerated inference (CPU / Intel GPU auto)
-- 🎥 Real-time webcam object detection
-- 📊 FPS counter + CPU usage overlay
-- 🧵 Multi-threaded inference pipeline
-- 🔥 Lightweight YOLOv8n model (fast & efficient)
-- 🖥 Optimized for Intel UHD Graphics (12th Gen tested)
-
----
-
-## 🧠 How It Works
-
+HOW IT WORKS
+------------------------------------------------------------
 1. Webcam captures frames using OpenCV
-2. Frames are sent to YOLOv8 OpenVINO model
-3. OpenVINO runs inference (CPU or Intel GPU automatically)
-4. Bounding boxes + labels are drawn on detected objects
-5. FPS + CPU usage are displayed in real time
+2. Frames are sent to a background inference thread
+3. YOLOv8 OpenVINO model processes frames
+4. Detection results are drawn using .plot()
+5. Main thread displays video with performance overlay
 
----
+============================================================
 
-## ⚙️ Installation
-pip install ultralytics opencv-python psutil
-pip install openvino
-yolo export model=yolov8n.pt format=openvino
+INSTALLATION
+------------------------------------------------------------
 
-### 1. Create virtual environment (recommended)
+1. Install Python
+Make sure Python 3.11+ is installed
 
-```bash
+Check:
+python --version
+
+
+------------------------------------------------------------
+
+2. Create virtual environment (recommended)
+
 python -m venv ai
 ai\Scripts\activate
+
+
+------------------------------------------------------------
+
+3. Install dependencies
+
+pip install ultralytics opencv-python psutil
+
+
+------------------------------------------------------------
+
+4. Install OpenVINO runtime
+
+pip install openvino
+
+
+============================================================
+
+EXPORT MODEL (OPTIONAL)
+------------------------------------------------------------
+If you want to export YOLOv8 to OpenVINO format:
+
+yolo export model=yolov8n.pt format=openvino
+
+This creates:
+yolov8n_openvino_model/
+
+
+============================================================
+
+HOW TO RUN
+------------------------------------------------------------
+Run the script:
+
+python main.py
+
+
+Press:
+Q → Quit program
+
+
+============================================================
+
+PERFORMANCE TIPS
+------------------------------------------------------------
+For best FPS on Intel UHD:
+
+- Use yolov8n (nano model only)
+- Keep resolution at 640x480 or lower
+- Enable threading (already included)
+- Do NOT use CUDA (Intel UHD does not support it in PyTorch)
+- OpenVINO automatically uses best available backend
+
+============================================================
+
+SUPPORTED HARDWARE
+------------------------------------------------------------
+- Intel UHD Graphics (12th Gen)
+- Intel Iris Xe
+- CPU fallback mode
+- Any OpenVINO-compatible device
+
+============================================================
+
+NOTES
+------------------------------------------------------------
+- CUDA is not used in this project
+- OpenVINO automatically selects CPU/GPU
+- Threading improves smoothness
+- Best performance depends on Intel optimization
+
+============================================================
+
+AUTHOR
+------------------------------------------------------------
+Firas Souissi
+Computer Engineering Student
+Simulation Pilot (Flight Sim / DCS / MSFS)
