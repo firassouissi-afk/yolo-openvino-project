@@ -38,6 +38,9 @@ It is designed to run efficiently on **low-power hardware (Intel UHD Graphics / 
 ---
 
 ## ⚙️ Installation
+pip install ultralytics opencv-python psutil
+pip install openvino
+yolo export model=yolov8n.pt format=openvino
 
 ### 1. Create virtual environment (recommended)
 
